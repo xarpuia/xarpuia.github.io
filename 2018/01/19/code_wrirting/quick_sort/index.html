@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="xuexiaogou的空间">
 <meta property="og:description" content="快速排序的实现分为两个步骤：   将输入的数组取pivot，按照各个数据的大小关系，移动为左右两段（&amp;lt; pivot及&amp;gt;= pivot）  对左段和右段递归处理。  递归好说，不好记的在于如何对于一个数组，取pivot之后将其他数据按大于小于关系，移动到左右，构成递归下一层的两段。 这里的实现是，用i和j分别从前后向中间移动，i指向的是从前往后的第一个&amp;gt;=pivot的值；j指向的是">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-19T03:05:43.000Z">
+<meta property="og:updated_time" content="2018-01-19T03:20:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="快速排序">
 <meta name="twitter:description" content="快速排序的实现分为两个步骤：   将输入的数组取pivot，按照各个数据的大小关系，移动为左右两段（&amp;lt; pivot及&amp;gt;= pivot）  对左段和右段递归处理。  递归好说，不好记的在于如何对于一个数组，取pivot之后将其他数据按大于小于关系，移动到左右，构成递归下一层的两段。 这里的实现是，用i和j分别从前后向中间移动，i指向的是从前往后的第一个&amp;gt;=pivot的值；j指向的是">
@@ -308,7 +308,7 @@
 <p>这里的实现是，用i和j分别从前后向中间移动，i指向的是从前往后的第一个&gt;=pivot的值；j指向的是从后往前的第一个&lt; pivot的值，两者交换，完成一次循环（第一层while）。</p>
 <p>容易忽略但很必要的是，在循环中，每个地方都要检查i &lt; j。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">AdjustArray</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = start, j = end;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> pivot = arr[start]; <span class="comment">// 取第一个作为pivot，记住之后该位置可被覆盖</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 每次循环，都会尝试前后交换一对数值</span></span><br><span class="line">    <span class="keyword">while</span> (i &lt; j)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 移动j，从后往前找第一个小于pivot的数，往前面填</span></span><br><span class="line">        <span class="keyword">while</span> (i &lt; j &amp;&amp; arr[j] &gt;= pivot)</span><br><span class="line">            j--;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; j) </span><br><span class="line">        &#123;</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 此时j指向的位置空出，等待一个&gt;=pivot的数来填</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 移动i，从前往后找第一个大于pivot的数（应处于最终pivot右），往j所在的位置填</span></span><br><span class="line">        <span class="keyword">while</span>(i &lt; j &amp;&amp; arr[i] &lt;= pivot)</span><br><span class="line">            i++;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; j)</span><br><span class="line">        &#123;</span><br><span class="line">            arr[j] = arr[i];</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 此时i指向一个可被填的空位，为下一轮循环可用</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 循环中全程都要判断i &lt; j！</span></span><br><span class="line">    &#125;</span><br><span class="line">    arr[i] = pivot;</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (start &lt; end)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// divide</span></span><br><span class="line">        <span class="keyword">int</span> mid = AdjustArray(arr, start, end);</span><br><span class="line">        <span class="comment">// conquer</span></span><br><span class="line">        QuickSort(arr, start, mid - <span class="number">1</span>);</span><br><span class="line">        QuickSort(arr, mid + <span class="number">1</span>, end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>参考：<a href="http://blog.csdn.net/morewindows/article/details/6684558" target="_blank" rel="noopener">http://blog.csdn.net/morewindows/article/details/6684558</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.csdn.net/morewindows/article/details/6684558" target="_blank" rel="noopener">http://blog.csdn.net/morewindows/article/details/6684558</a></p>
 
       
     </div>
@@ -397,8 +397,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -440,6 +449,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">1.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
