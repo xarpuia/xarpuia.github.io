@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="条件 数据存储在有序数组中； 数据有序排列。  （以下以升序为例） 递归二分查找输入的参数为数组下标的上下界，这是因为不同层的递归需要区分 12345678910111213int BinarySearchRec(int arr[], int low, int high, int target) &amp;#123;    if (arr == NULL || low &amp;gt; high)">
+<meta name="description" content="条件 数据存储在有序数组中； 数据有序排列。  （本文以升序为例） 递归二分查找输入的参数为数组下标的上下界，这是因为不同层的递归需要区分 12345678910111213int BinarySearchRec(int arr[], int low, int high, int target) &amp;#123;    if (arr == NULL || low &amp;gt; high)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二分查找（递归&#x2F;非递归）">
+<meta property="og:title" content="数组的二分查找（递归&#x2F;非递归）">
 <meta property="og:url" content="http://yoursite.com/2018/01/19/code_wrirting/binary_search/index.html">
 <meta property="og:site_name" content="xuexiaogou的空间">
-<meta property="og:description" content="条件 数据存储在有序数组中； 数据有序排列。  （以下以升序为例） 递归二分查找输入的参数为数组下标的上下界，这是因为不同层的递归需要区分 12345678910111213int BinarySearchRec(int arr[], int low, int high, int target) &amp;#123;    if (arr == NULL || low &amp;gt; high)">
+<meta property="og:description" content="条件 数据存储在有序数组中； 数据有序排列。  （本文以升序为例） 递归二分查找输入的参数为数组下标的上下界，这是因为不同层的递归需要区分 12345678910111213int BinarySearchRec(int arr[], int low, int high, int target) &amp;#123;    if (arr == NULL || low &amp;gt; high)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-19T03:23:28.000Z">
+<meta property="og:updated_time" content="2018-01-19T03:25:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二分查找（递归&#x2F;非递归）">
-<meta name="twitter:description" content="条件 数据存储在有序数组中； 数据有序排列。  （以下以升序为例） 递归二分查找输入的参数为数组下标的上下界，这是因为不同层的递归需要区分 12345678910111213int BinarySearchRec(int arr[], int low, int high, int target) &amp;#123;    if (arr == NULL || low &amp;gt; high)">
+<meta name="twitter:title" content="数组的二分查找（递归&#x2F;非递归）">
+<meta name="twitter:description" content="条件 数据存储在有序数组中； 数据有序排列。  （本文以升序为例） 递归二分查找输入的参数为数组下标的上下界，这是因为不同层的递归需要区分 12345678910111213int BinarySearchRec(int arr[], int low, int high, int target) &amp;#123;    if (arr == NULL || low &amp;gt; high)">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>二分查找（递归/非递归） | xuexiaogou的空间</title>
+  <title>数组的二分查找（递归/非递归） | xuexiaogou的空间</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">二分查找（递归/非递归）</h1>
+          <h1 class="post-title" itemprop="name headline">数组的二分查找（递归/非递归）</h1>
         
 
         <div class="post-meta">
@@ -303,7 +303,7 @@
 <li>数据存储在有序数组中；</li>
 <li>数据有序排列。</li>
 </ol>
-<p>（以下以升序为例）</p>
+<p>（本文以升序为例）</p>
 <h1 id="递归二分查找"><a href="#递归二分查找" class="headerlink" title="递归二分查找"></a>递归二分查找</h1><p>输入的参数为数组下标的上下界，这是因为不同层的递归需要区分</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearchRec</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr == <span class="literal">NULL</span> || low &gt; high)            <span class="comment">// 都要考虑点非法输入</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = low + (high - low) / <span class="number">2</span>;         <span class="comment">// 避免溢出</span></span><br><span class="line">    <span class="keyword">int</span> pos = <span class="number">-1</span>;                             <span class="comment">// 为方便记忆，统一以pos表示返回值</span></span><br><span class="line">    <span class="keyword">if</span> (arr[mid] == target)</span><br><span class="line">        pos = mid;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt; target)</span><br><span class="line">        pos = BinarySearchRec(arr, low, mid - <span class="number">1</span>, target);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        pos = BinarySearchRec(arr, mid + <span class="number">1</span>, high, target);</span><br><span class="line">    <span class="keyword">return</span> pos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="非递归二分查找"><a href="#非递归二分查找" class="headerlink" title="非递归二分查找"></a>非递归二分查找</h1><p>非递归输入的参数为数组长度（内部的low, high类比递归方法的不同层传入的参数）</p>
@@ -337,8 +337,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/19/code_wrirting/tree_traverse/" rel="next" title="遍历（递归/非递归）">
-                <i class="fa fa-chevron-left"></i> 遍历（递归/非递归）
+              <a href="/2018/01/19/code_wrirting/tree_traverse/" rel="next" title="树的遍历（递归/非递归）">
+                <i class="fa fa-chevron-left"></i> 树的遍历（递归/非递归）
               </a>
             
           </div>
