@@ -229,6 +229,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/binary_search/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xarpuia">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xuexiaogou的空间">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/01/19/binary_search/" itemprop="url">二分查找（递归/非递归）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T11:08:40+08:00">
+                2018-01-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="B树定义"><a href="#B树定义" class="headerlink" title="B树定义"></a>B树定义</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BTreeNode</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    BTreeNode(<span class="keyword">int</span> i) : lchild(<span class="literal">NULL</span>), rchild(<span class="literal">NULL</span>) &#123;&#125;        </span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    BTreeNode *lchild;</span><br><span class="line">    BTreeNode *rchild;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="递归遍历"><a href="#递归遍历" class="headerlink" title="递归遍历"></a>递归遍历</h1><p>递归式遍历的前序、中序、后序，总体结构一致，只在于处理方法调用的时机。<br>记得检查NULL就好。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorder_rec</span><span class="params">(BTreeNode *node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        <span class="comment">// do something ...            // 前序，在左右child之前处理</span></span><br><span class="line">        preorder_rec(node-&gt;lchild);</span><br><span class="line">        preorder_rec(node-&gt;rchild);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder_rec</span><span class="params">(BTreeNode *node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        inorder_rec(node-&gt;lchild);</span><br><span class="line">        <span class="comment">// do something ...            // 中序，在lchild之后rchild之前处理</span></span><br><span class="line">        inorder_rec(node-&gt;rchild);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postorder_rec</span><span class="params">(BTreeNode *node)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (node) &#123;</span><br><span class="line">        postorder_rec(node-&gt;lchild);</span><br><span class="line">        postorder_rec(node-&gt;rchild);</span><br><span class="line">        <span class="comment">// do something ...            // 后序，在左右child之后处理</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="非递归遍历"><a href="#非递归遍历" class="headerlink" title="非递归遍历"></a>非递归遍历</h1><h2 id="前序、中序"><a href="#前序、中序" class="headerlink" title="前序、中序"></a>前序、中序</h2><p>这两者的结构类似，区别只在于对当前node处理的时机</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">preorder</span><span class="params">(BTreeNode *node)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;BTreeNode *&gt; st;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环条件：1. 初始node不为空；OR 2. stack中还有未遍历到的node</span></span><br><span class="line">    <span class="keyword">while</span> (node || !st.empty()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            <span class="comment">// do something ...</span></span><br><span class="line">            st.push(node);</span><br><span class="line">            node = node-&gt;lchild;</span><br><span class="line">        &#125;</span><br><span class="line">        node = st.top();</span><br><span class="line">        st.pop();</span><br><span class="line">        node = node-&gt;rchild;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">inorder</span><span class="params">(BTreeNode *node)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;BTreeNode *&gt; st;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 循环条件：1. 初始node不为空；OR 2. stack中还有未遍历到的node</span></span><br><span class="line">    <span class="keyword">while</span> (node || !st.empty()) &#123;</span><br><span class="line">        <span class="keyword">while</span> (node) &#123;</span><br><span class="line">            st.push(node);</span><br><span class="line">            node = node-&gt;lchild;</span><br><span class="line">        &#125;</span><br><span class="line">        node = st.top();</span><br><span class="line">        st.pop();</span><br><span class="line">        <span class="comment">// do something ...</span></span><br><span class="line">        node = node-&gt;rchild;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="后序"><a href="#后序" class="headerlink" title="后序"></a>后序</h2><p>非递归后序遍历中，只在stack中保存节点指针是不够的，否则在从stack中取到某node时，无法分辨是“遍历完lchild后出栈的”还是“遍历完rchild后出栈的”。</p>
+<p>即需要用额外的数据对该节点的“访问状态”进行编码，这就是为什么非递归后序遍历处理起来较为复杂的原因。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postorder</span><span class="params">(BTreeNode *node)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">stack</span>&lt;BTreeNode *&gt; st;</span><br><span class="line">    <span class="keyword">bool</span> visited[TREE_NODE_MAX_NUM];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 入栈root到最左leaf上的所有node</span></span><br><span class="line">    <span class="keyword">while</span> (node) &#123;</span><br><span class="line">        st.push(node);</span><br><span class="line">        visited[st.size()] = <span class="literal">false</span>;</span><br><span class="line">        node = node-&gt;lchild;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!st.empty()) &#123;</span><br><span class="line">        <span class="comment">// 取栈顶node，此时该node的lchild已遍历完毕，待遍历rchild</span></span><br><span class="line">        node = st.top();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 第二个条件用来区分是lchild还是rchild遍历完回到的node</span></span><br><span class="line">        <span class="keyword">while</span> (node-&gt;rchild &amp;&amp; visited[st.size()] == <span class="literal">false</span>) &#123;</span><br><span class="line">            node = node-&gt;rchild;</span><br><span class="line">            visited[st.size()] = <span class="literal">true</span>;  <span class="comment">// 标记该node已遍历过rchild</span></span><br><span class="line">            <span class="keyword">while</span> (node) &#123;              <span class="comment">// 入栈最左线的所有node</span></span><br><span class="line">                st.push(node);</span><br><span class="line">                visited[st.size()] = <span class="literal">false</span>;</span><br><span class="line">                node = node-&gt;lchild;</span><br><span class="line">            &#125;</span><br><span class="line">            node = st.top();            <span class="comment">// 开始遍历该node的rchild</span></span><br><span class="line">        &#125;</span><br><span class="line">        node = st.top();                <span class="comment">// 此时node的rchild已遍历完毕</span></span><br><span class="line">        st.pop();</span><br><span class="line">        <span class="comment">// do something ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="层序"><a href="#层序" class="headerlink" title="层序"></a>层序</h2><p>层序遍历用非递归的方式实现较为简单，使用queue依次保存左右child即可。<br>queue中的所有元素都处在同一层。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">levelorder</span><span class="params">(BTreeNode *node)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;BTreeNode *&gt; q;</span><br><span class="line">    <span class="keyword">if</span> (node)</span><br><span class="line">        q.push(node);</span><br><span class="line">    <span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">        node = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="comment">// do something ...</span></span><br><span class="line">        <span class="keyword">if</span> (node-&gt;lchild)</span><br><span class="line">            q.push(node-&gt;lchild);</span><br><span class="line">        <span class="keyword">if</span> (node-&gt;rchild)</span><br><span class="line">            q.push(node-&gt;rchild);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/heap_sort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -684,8 +812,7 @@
       
         
           
-            <p>*这三种排序方法都需要两层循环，故时间复杂度都是O(n)</p>
-<p>*默认升序</p>
+            <p>*这三种排序方法都需要两层循环，故时间复杂度都是O(n)<br>*默认升序</p>
 <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>数组被分为前后两段，前一段已排序，后一段未排序。<br>每次取后一段的第一个数，往前查找合适的位置并插入。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertSort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">size_t</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> key, idx;                       <span class="comment">// idx指向插入的目标位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++) &#123;       <span class="comment">// 第0个元素开始时默认已排好序，故从1开始</span></span><br><span class="line">        key = arr[i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; key) &#123;         <span class="comment">// idx指向当前判断的元素，后移更大的</span></span><br><span class="line">                arr[j + <span class="number">1</span>] = arr[j];</span><br><span class="line">                idx = j;                <span class="comment">// idx用来避免key为最小的情况</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;                    <span class="comment">// 找到已排序段不大于key的最大元素</span></span><br><span class="line">                idx = j + <span class="number">1</span>;            <span class="comment">// 在其后一个位置插入key</span></span><br><span class="line">                <span class="keyword">break</span>;                  <span class="comment">// 确定插入点，提前退出</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[idx] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><h2 id="核心思想-1"><a href="#核心思想-1" class="headerlink" title="核心思想"></a>核心思想</h2><p>外循环——每次冒泡出后半段未排序数组的最小的元素。<br>内循环——从后往前，每次比较相邻两个元素，冒泡较小的元素。<br>两层循环，外层需遍历n -1次，内层遍历次数依次减少。<br>优化：若某轮没有元素冒泡，则表示已排好序，可提前结束。</p>
@@ -1020,7 +1147,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
