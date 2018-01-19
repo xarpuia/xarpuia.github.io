@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="排序思路分析以升序为例，堆排序分为两个阶段：   构建初始大顶堆（堆中每个节点都比左右child大）；  对大顶堆，每次都将堆顶元素与最后一个leaf交换，再对剩下的元素构建大顶堆，如此循环n次。  解释1. 为什么升序/降序构建的是大顶堆/小顶堆？因为第2步中，每次都是将堆顶元素后置，故数组排序是从后往前完成的，故与升降序表意相反 2. HeapSort第二个参数n是什么？类似QuickSort">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/01/19/hello-world/index.html">
+<meta property="og:title" content="堆排序">
+<meta property="og:url" content="http://yoursite.com/2018/01/19/heap_sort/index.html">
 <meta property="og:site_name" content="xuexiaogou的空间">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="排序思路分析以升序为例，堆排序分为两个阶段：   构建初始大顶堆（堆中每个节点都比左右child大）；  对大顶堆，每次都将堆顶元素与最后一个leaf交换，再对剩下的元素构建大顶堆，如此循环n次。  解释1. 为什么升序/降序构建的是大顶堆/小顶堆？因为第2步中，每次都是将堆顶元素后置，故数组排序是从后往前完成的，故与升降序表意相反 2. HeapSort第二个参数n是什么？类似QuickSort">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-19T02:16:40.000Z">
+<meta property="og:updated_time" content="2018-01-19T03:07:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="堆排序">
+<meta name="twitter:description" content="排序思路分析以升序为例，堆排序分为两个阶段：   构建初始大顶堆（堆中每个节点都比左右child大）；  对大顶堆，每次都将堆顶元素与最后一个leaf交换，再对剩下的元素构建大顶堆，如此循环n次。  解释1. 为什么升序/降序构建的是大顶堆/小顶堆？因为第2步中，每次都是将堆顶元素后置，故数组排序是从后往前完成的，故与升降序表意相反 2. HeapSort第二个参数n是什么？类似QuickSort">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/19/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/19/heap_sort/"/>
 
 
 
 
 
-  <title>Hello World | xuexiaogou的空间</title>
+  <title>堆排序 | xuexiaogou的空间</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/19/heap_sort/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="xarpuia">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">堆排序</h1>
         
 
         <div class="post-meta">
@@ -261,7 +261,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T10:16:40+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T11:05:51+08:00">
                 2018-01-19
               </time>
             
@@ -299,15 +299,15 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="排序思路分析"><a href="#排序思路分析" class="headerlink" title="排序思路分析"></a>排序思路分析</h1><p>以升序为例，堆排序分为两个阶段： </p>
+<ol>
+<li>构建初始大顶堆（堆中每个节点都比左右child大）； </li>
+<li>对大顶堆，每次都将堆顶元素与最后一个leaf交换，再对剩下的元素构建大顶堆，如此循环n次。</li>
+</ol>
+<h1 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h1><h2 id="1-为什么升序-降序构建的是大顶堆-小顶堆？"><a href="#1-为什么升序-降序构建的是大顶堆-小顶堆？" class="headerlink" title="1. 为什么升序/降序构建的是大顶堆/小顶堆？"></a>1. 为什么升序/降序构建的是大顶堆/小顶堆？</h2><p>因为第2步中，每次都是将堆顶元素后置，故数组排序是从后往前完成的，故与升降序表意相反</p>
+<h2 id="2-HeapSort第二个参数n是什么？"><a href="#2-HeapSort第二个参数n是什么？" class="headerlink" title="2. HeapSort第二个参数n是什么？"></a>2. HeapSort第二个参数n是什么？</h2><p>类似QuickSort，表示数组末尾元素的下标，即arr[n]是没有越界的</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildHeap</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> parent = start, lchild = parent * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> maxchild = lchild;                    <span class="comment">// 标记最大的child位置</span></span><br><span class="line">    <span class="keyword">while</span> (lchild &lt;= end) &#123;                   <span class="comment">// 注意！检查的是lchild而非maxchild</span></span><br><span class="line">        maxchild = lchild;</span><br><span class="line">        <span class="keyword">if</span> (lchild + <span class="number">1</span> &lt;= end &amp;&amp; arr[lchild + <span class="number">1</span>] &gt; arr[lchild]) &#123;</span><br><span class="line">            maxchild = lchild + <span class="number">1</span>;            <span class="comment">// 需要先判断是否有rchild，即其下标是否越界</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (arr[parent] &gt;= arr[maxchild]) &#123;   <span class="comment">// 更常发生的分支</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            swap(arr[parent], arr[maxchild]); <span class="comment">// 将maxchild元素置于parent位置</span></span><br><span class="line">            parent = maxchild;                <span class="comment">// 触发下一层child的大顶调整</span></span><br><span class="line">            lchild = <span class="number">2</span> * maxchild + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(<span class="keyword">int</span> arr[], <span class="keyword">int</span> n)</span> </span>&#123;           <span class="comment">// 注意第二个参数为数组len - 1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = (n - <span class="number">1</span>)/<span class="number">2</span>; i &gt;= <span class="number">0</span>; --i)    <span class="comment">// 取到最后一个元素的parent，循环至root</span></span><br><span class="line">        BuildHeap(arr, i, n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;           <span class="comment">// 循环n次，即取n次未排序数组的最大值</span></span><br><span class="line">        swap(arr[<span class="number">0</span>], arr[n - i]);           <span class="comment">// 后置大顶堆堆顶元素</span></span><br><span class="line">        BuildHeap(arr, <span class="number">0</span>, n - i - <span class="number">1</span>);       <span class="comment">// 重新构建大顶堆</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>参考：<a href="http://blog.csdn.net/u013412497/article/details/52205785" target="_blank" rel="noopener">http://blog.csdn.net/u013412497/article/details/52205785</a><br>*已修改该参考的代码错误</p>
 
       
     </div>
@@ -332,15 +332,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/19/quick_sort/" rel="next" title="快速排序">
+                <i class="fa fa-chevron-left"></i> 快速排序
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/19/first_blog/" rel="prev" title="再次开始">
-                再次开始 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -454,7 +454,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#排序思路分析"><span class="nav-number">1.</span> <span class="nav-text">排序思路分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解释"><span class="nav-number">2.</span> <span class="nav-text">解释</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-为什么升序-降序构建的是大顶堆-小顶堆？"><span class="nav-number">2.1.</span> <span class="nav-text">1. 为什么升序/降序构建的是大顶堆/小顶堆？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-HeapSort第二个参数n是什么？"><span class="nav-number">2.2.</span> <span class="nav-text">2. HeapSort第二个参数n是什么？</span></a></li></ol></li></ol></div>
             
 
           </div>
