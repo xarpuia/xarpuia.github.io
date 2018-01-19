@@ -302,10 +302,7 @@
           
             <p>*这三种排序方法都需要两层循环，故时间复杂度都是O(n)</p>
 <p>*默认升序</p>
-<p>#插入排序</p>
-<p>##核心思想</p>
-<p>数组被分为前后两段，前一段已排序，后一段未排序。 </p>
-<p>每次取后一段的第一个数，往前查找合适的位置并插入。</p>
+<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><h2 id="核心思想"><a href="#核心思想" class="headerlink" title="核心思想"></a>核心思想</h2><p>数组被分为前后两段，前一段已排序，后一段未排序。<br>每次取后一段的第一个数，往前查找合适的位置并插入。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void InsertSort(int arr[], size_t n) &#123;</span><br><span class="line">    int key, idx;                       // idx指向插入的目标位置</span><br><span class="line">    for (int i = 1; i &lt; n; i++) &#123;       // 第0个元素开始时默认已排好序，故从1开始</span><br><span class="line">        key = arr[i];</span><br><span class="line">        for (int j = i - 1; j &gt;= 0; --j) &#123;</span><br><span class="line">            if (arr[j] &gt; key) &#123;         // idx指向当前判断的元素，后移更大的</span><br><span class="line">                arr[j + 1] = arr[j];</span><br><span class="line">                idx = j;                // idx用来避免key为最小的情况</span><br><span class="line">            &#125; else &#123;                    // 找到已排序段不大于key的最大元素</span><br><span class="line">                idx = j + 1;            // 在其后一个位置插入key</span><br><span class="line">                break;                  // 确定插入点，提前退出</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        arr[idx] = key;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
